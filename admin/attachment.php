@@ -122,7 +122,7 @@ if ($action == 'attlib') {
 //缩略图
 if ($action == 'thumb') {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
-       $sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE  thumfor = 0";
+	$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE blogid = $logid AND thumfor = 0";
 	$query = $DB->query($sql);
 	$attach = array();
 	while ($row = $DB->fetch_array($query)) {
@@ -131,7 +131,8 @@ if ($action == 'thumb') {
 	if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png', 'bmp'))) {
 	   echo "<li id=\"attlist\"  style=\"width:33%;display:block;float:left\"><a href=\"javascript: insertThumb('$atturl','pic');\" ><img src='$atturl' width=\"90\" height=\"90\" border=\"0\" align=\"absmiddle\"></a></li>";
 		}
-	}}
+	}
+}
 
 //删除附件
 if ($action == 'del_attach') {
@@ -188,7 +189,8 @@ if ($action == 'del_media') {
 }
 
 //批量删除附件
-if ($action== 'dell_all_media') {$media = isset($_POST['media']) ? $_POST['media'] : '';
+if ($action== 'dell_all_media') {
+$media = isset($_POST['media']) ? $_POST['media'] : '';
 LoginAuth::checkToken();
 if (!$media) {
 emDirect("./media.php?active_del=1");
