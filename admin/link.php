@@ -7,6 +7,7 @@
 require_once 'globals.php';
 
 $Link_Model = new Link_Model();
+$SortLink_Model = new SortLink_Model();
 $sortlink = $CACHE->readCache('sortlink');
 
 if ($action == '') {
@@ -93,6 +94,7 @@ if ($action=='update_link') {
 	$Link_Model->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'sitepic'=>$sitepic, 'linksortid'=>$linksortid, 'description'=>$description), $linkId);
 
 	$CACHE->updateCache('link');
+	$CACHE->updateCache('sortlink');
 	emDirect("./link.php?active_edit=1");
 }
 

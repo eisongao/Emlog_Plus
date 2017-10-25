@@ -14,13 +14,14 @@ $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
 $date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的文章时间
 $sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
-
+if(Option::get('filter_xss') == "y"){
 $xss = new XssHtml($_POST['content']);
 $_POST['content'] = $xss->getHtml();
 $xsss = new XssHtml($_POST['excerpt']);
 $_POST['excerpt'] = $xsss->getHtml();
 $xss = new XssHtml($_POST['thumbs']);
 $_POST['thumbs'] = $xss->getHtml();
+}
 $content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 $excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 $thumbs = isset($_POST['thumbs']) ? addslashes(trim($_POST['thumbs'])) : '';

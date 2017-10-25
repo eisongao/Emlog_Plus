@@ -7,15 +7,14 @@
 require_once 'globals.php';
 
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
+if ($action == '' && !$plugin) {
+    $Plugin_Model = new Plugin_Model();
+    $plugins = $Plugin_Model->getPlugins();
 
-if ($action == '' && !$plugin) {
-	$Plugin_Model = new Plugin_Model();
-	$plugins = $Plugin_Model->getPlugins();
-
-	include View::getView('header');
-	require_once(View::getView('plugin'));
-	include View::getView('footer');
-	View::output();
+    include View::getView('header');
+    require_once(View::getView('plugin'));
+    include View::getView('footer');
+    View::output();
 }
 
 //激活
@@ -41,28 +40,28 @@ if ($action == 'inactive') {
 
 //加载插件配置页面
 if ($action == '' && $plugin) {
-     if (!preg_match("/\w+/i", $plugin)) {emMsg(langs('plugin_name_error'));
-       }
-       include View::getView('header');
-       require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
-	plugin_setting_view();
-	include View::getView('footer');
+    include View::getView('header');
+    if (!preg_match("/^[\w_-]+$/", $plugin)) {emMsg(langs('plugin_name_error'));
+}
+    require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
+    plugin_setting_view();
+    include View::getView('footer');
 }
 
 //保存插件设置
 if ($action == 'setting') {
-      if (!preg_match("/\w+/i", $plugin)) {emMsg(langs('plugin_name_error'));
-       }
-	if (!empty($_POST)) {
-		require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
-		if (false === plugin_setting()) {
-			emDirect("./plugin.php?plugin={$plugin}&error=1");
-		} else{
-			emDirect("./plugin.php?plugin={$plugin}&setting=1");
-		}
-	} else{
-		emDirect("./plugin.php?plugin={$plugin}&error=1");
-	}
+    if (!empty($_POST)) {
+        if (!preg_match("/^[\w_-]+$/", $plugin)) {emMsg(langs('plugin_name_error'));
+         }
+        require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
+        if (false === plugin_setting()) {
+            emDirect("./plugin.php?plugin={$plugin}&error=1");
+        } else{
+            emDirect("./plugin.php?plugin={$plugin}&setting=1");
+        }
+    } else{
+        emDirect("./plugin.php?plugin={$plugin}&error=1");
+    }
 }
 
 //安装插件

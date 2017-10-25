@@ -23,12 +23,43 @@ $name =  $user_cache[UID]['name'];
 function newcomm(){
 	global $CACHE;
 	$db=Database::getInstance();
-        $sql = "SELECT cid,gid,date,poster,mail,comment FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0,5";
+        $yesterday=60*60*24;
+        $now =time();
+        $today=$now-$yesterday;
+        $sql = "SELECT cid,gid,date,poster,mail,comment FROM " . DB_PREFIX . "comment WHERE  hide='n' and date >='".$today."' ORDER BY date DESC LIMIT 0,5";        
         $ret= $db->query($sql);
-        while($row = $db->fetch_array($ret)){
+        $totals = $db ->num_rows($ret); 
+        echo "<li class=\"dropdown alert-drp\">
+<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><i class=\"zmdi zmdi-notifications top-nav-icon\"></i>";
+if($totals !="0"){
+echo "<span class=\"top-nav-icon-badge\">".$totals."</span>";
+}
+echo "</a>
+<ul  class=\"dropdown-menu alert-dropdown\" data-dropdown-in=\"bounceIn\" data-dropdown-out=\"bounceOut\">
+<li>
+<div class=\"notification-box-head-wrap\">
+<span class=\"notification-box-head pull-left inline-block\">".langs('news_commet')."</span>
+<a class=\"txt-danger pull-right clear-notifications inline-block\" href=\"javascript:void(0)\"> ".langs('news_close')."</a>
+<div class=\"clearfix\"></div>
+<hr class=\"light-grey-hr ma-0\"/>
+</div>
+<li>
+<div class=\"streamline message-nicescroll-bar\">";
+ while($row = $db->fetch_array($ret)){
 echo "<div class=\"sl-item\"><a href=\"".Url::log($row['gid'])."#comment-".$row["cid"]."\"><div class=\"sl-avatar\">
 <img class=\"img-responsive\" src=".getGravatar($row["mail"])." alt=\"avatar\"></div><div class=\"sl-content\"><span class=\"inline-block capitalize-font  pull-left truncate head-notifications\">".$row['poster']."</span><span class=\"inline-block font-11  pull-right notifications-time\">".date("Y-m-d",$row['date'])."</span><div class=\"clearfix\"></div><p class=\"truncate\">".htmlspecialchars($row['comment'])."</p></div></a></div><hr class=\"light-grey-hr ma-0\"/>";        
-}                
+} 
+echo "</div>
+</li>
+<li>
+<div class=\"notification-box-bottom-wrap\">
+<hr class=\"light-grey-hr ma-0\"/>
+<a class=\"block text-center read-all\" href=\"comment.php\"> ".langs('all_commets')."</a>
+<div class=\"clearfix\"></div>
+</div>
+</li>
+</ul>
+</li>";               
 }
 
 //获取微语

@@ -5,8 +5,8 @@
  */
 
 require_once 'globals.php';
-
-if ($action == '') {
+$options_cache = $CACHE->updateCache('options');
+if ($action == '') {
 	$options_cache = $CACHE->readCache('options');
 	extract($options_cache);
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
@@ -29,8 +29,8 @@ if ($action == '') {
   $conf_detect_url = $detect_url == 'y' ? 'checked="checked"' : '';
   $conf_avatar_cache = $avatar_cache == 'y' ? 'checked="checked"' : '';  	
     $conf_register_open = $register_open == 'y' ? 'checked="checked"' : '';  	
-    	 $conf_webscan = $webscan == 'y' ? 'checked="checked"' : '';
-    
+   $conf_webscan = $webscan == 'y' ? 'checked="checked"' : '';
+   $conf_filter_xss = $filter_xss == 'y' ? 'checked="checked"' : '';
 
 	$ex1 = $ex2 = $ex3 = $ex4 = '';
 	if ($rss_output_fulltext == 'y') {
@@ -200,6 +200,7 @@ if ($action == 'mod_config') {
     'language' => isset($_POST['language']) ? addslashes($_POST['language']) : 'n',  
   'register_open' => isset($_POST['register_open']) ? addslashes($_POST['register_open']) : 'n',  
   'webscan' => isset($_POST['webscan']) ? addslashes($_POST['webscan']) : 'n',
+    'filter_xss' => isset($_POST['filter_xss']) ? addslashes($_POST['filter_xss']) : 'n',
 
 	);
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {		emMsg(langs('verification_code_not_supported'),"configure.php");
