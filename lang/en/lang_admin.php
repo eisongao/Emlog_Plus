@@ -304,6 +304,7 @@
  'post_thumb'		=> 'You can insert your own address or select an attachment',
  'media_mange'=>'Attachment manage',
  'attdellall'=>'You are sure to delete the attachment', 
+ 'no_yet_media'=>'There are no attachments in the blog',
 
 //---------------------------
 //admin/views/blogger.php
@@ -434,6 +435,7 @@
  'home_footer_info'		=> 'Footer info at the Home',
  'home_footer_info_html'	=> 'HTML supported, can be used to add a traffic statistics code',
  'save_settings'		=> 'Save Settings',
+ 'filter_xss'=>'Enable editor XSS filter',
 //---------------------------
 //admin/views/data.php
  'data_backup'			=> 'Data Backup',
@@ -840,6 +842,16 @@
 'pink'=>'Pink',
 'silver'=>'Silver color',
 'set_ok'=>'Set a success',
+'full_screen'=>'Full Width',
+'full_screen_'=>'Boxed Width',
+'preloader'=>'Special effects',
+'preloader_'=>'No Effect',
+'responsive_choose'=>'Adaptive effect',
+'responsive'=>'Sliding effect',
+'responsive_'=>'Default adaptive',
+'scrollable_nav'=>'Scrollable Sidebar',
+'scrollable'=>'Enable rolling',
+'scrollable_'=>'Disable rolling',
 
 //---------------------------
 //admin/views/tag.php

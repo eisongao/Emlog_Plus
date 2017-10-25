@@ -306,6 +306,7 @@ $langs = array(
  'post_thumb'		=> '你可以自定义地址或者选择附件中图插入',
  'media_mange'=>'附件管理',
  'attdellall'=>'你确定要删除该附件',
+ 'no_yet_media'=>'博客中没有任何附件',
 
 //---------------------------
 //admin/views/blogger.php
@@ -437,7 +438,7 @@ $langs = array(
  'home_footer_info'		=> '首页底部信息',
  'home_footer_info_html'	=> '支持html，可用于添加流量统计代码',
  'save_settings'		=> '保存设置',
-
+'filter_xss'=>'启用编辑器XSS过滤(建议开启)',
 
 
 //---------------------------
@@ -849,6 +850,16 @@ $langs = array(
 'pink'=>'粉色',
 'silver'=>'银色',
 'set_ok'=>'设置成功',
+'full_screen'=>'宽屏',
+'full_screen_'=>'窄屏',
+'preloader'=>'特效',
+'preloader_'=>'无特效',
+'responsive_choose'=>'自适应效果',
+'responsive'=>'滑动效果',
+'responsive_'=>'正常自适应',
+'scrollable_nav'=>'边栏滚动条',
+'scrollable'=>'启用滚动',
+'scrollable_'=>'禁用滚动',
 
 //---------------------------
 //admin/views/tag.php
@@ -1017,6 +1028,5 @@ $langs = array(
  'widget_use'		=> '使用中的组件',
  'widget_order_save'	=> '保存组件排序',
  'widget_setting_reset'	=> '恢复出厂设置',
- 
  
 );

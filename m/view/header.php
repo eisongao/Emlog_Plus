@@ -11,6 +11,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <meta content="black" name="apple-mobile-web-app-status-bar-style"> 
 <meta content="telephone=no" name="format-detection"> 
 <link rel="stylesheet" href="<?php echo BLOG_URL; ?>m/view/css/main.css">
+<?php doAction('index_mhead') ?>
 </head>
 <body>
 <div id="main_body">
