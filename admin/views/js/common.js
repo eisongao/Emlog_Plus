@@ -1,4 +1,4 @@
-$(function () {
+$(function(){
 $('#LockScreen').click(function(){
           $('#lock_box').show();
         })
@@ -13,8 +13,7 @@ $('#LockScreen').click(function(){
             $(".warn").text("index:" + slider.index + "， max:" + slider.max + ",lableIndex:" + slider.lableIndex + ",value:" + $(".slideunlock-lockable").val() + " date:" + new Date().getUTCDate());
         });
         slider.init();
-    })
-
+});
 function getChecked(node) {
     var re = false;
     $('input.'+node).each(function(i){
@@ -175,7 +174,8 @@ if (UE.getEditor('content').queryCommandState("source")== true){
 function insertThumb (pic){
 	var targetinput = $("#thumbs").val();
        targetinput += pic;
-       if($("#thumbs").val()==""){      $("#thumbs").val(targetinput);
+       if($("#thumbs").val()==""){
+      $("#thumbs").val(targetinput);
       }else{
        $("#thumbs").attr('value','');
 
@@ -245,6 +245,7 @@ function autosave(act){
         var date = $.trim($("#date").val());
         var logid = $("#as_logid").val();
         var author = $("#author").val();
+        var thumbs = $("#thumbs").val();
         if(editor==2){
 	 var content = tinyMCE.get('content').getContent();
 	 var excerpt = tinyMCE.get('excerpt').getContent();
@@ -268,6 +269,7 @@ if(editor==3){
                     +"&alias="+encodeURIComponent(alias)
                     +"&author="+author
                     +"&sort="+sort
+                    +"&thumbs="+thumbs
                     +"&postdate="+postdate
                     +"&date="+date
                     +"&tag="+encodeURIComponent(tag)
