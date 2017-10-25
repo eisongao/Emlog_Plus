@@ -30,25 +30,6 @@ for($j = 0; $j < 240; $j++){
         $y = mt_rand(0,40);
         imagesetpixel($img,$x,$y,$pixColor);
 }
-//4条横斜线
-for ($i=0; $i < 5; $i++) { 
-    $lineColor = imagecolorallocate($img, rand(50, 150), rand(50, 150), rand(50, 150));
-    $lineX1 = 0;
-    $lineX2 = 80;
-    $lineY1 = ($i + 1) * 8;
-    $lineY2 = ($i + 1) * 15;
-    imageline($img, $lineX1, $lineY1, $lineX2, $lineY2, $lineColor);
-}
-
-//4条竖斜线
-for ($i=0; $i < 5; $i++) { 
-    $lineColor = imagecolorallocate($img, rand(50, 150), rand(50, 150), rand(50, 150));
-    $lineY1 = 0;
-    $lineY2 = 30;
-    $lineX1 = ($i + 1) * 8;
-    $lineX2 = ($i + 1) * 15;
-    imageline($img, $lineX1, $lineY1, $lineX2, $lineY2, $lineColor);
-}
 
 
 header('Content-Type: image/png');

@@ -47,7 +47,7 @@ emMsg(langs('comment_error_flood_control'));			} elseif (empty($name)) {
 		} elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
 emMsg(langs('comment_error_url_invalid'),'javascript:history.back(-1);');
 		} elseif (empty($content)) {
-			emMsg(lang('comment_error_empty'));
+			emMsg(langs('comment_error_empty'));
 		} elseif (strlen($content) > 8000) {
 	emMsg(langs('comment_error_content_invalid'));
 		} elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
