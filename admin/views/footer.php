@@ -12,10 +12,12 @@
  <script type="text/javascript" src="./views/js/jquery.slideunlock.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
  <script src="./views/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script src="./views/dist/js/jquery.slimscroll.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script src="./views/vendors/bower_components/waypoints/lib/jquery.waypoints.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script src="./views/vendors/bower_components/jquery.counterup/jquery.counterup.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script src="./views/vendors/bower_components/waypoints/lib/jquery.waypoints.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<?php if(Option::get('preloader') == "y"):?>
 <script src="./views/dist/js/dropdown-bootstrap-extended.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script src="./views/vendors/bower_components/switchery/dist/switchery.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<?php endif ?>
 <script src="./views/dist/js/init.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 </body>
 </html>

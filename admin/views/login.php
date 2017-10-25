@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="robots" content="noindex, nofollow">
 <title><?php echo langs('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
 <link rel="shortcut icon" href="favicon.ico">
 <link href="./views/dist/css/style.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet" type="text/css">
@@ -12,9 +13,11 @@
 </head>
 <body>
 <!--Preloader-->
+<?php if(Option::get('preloader') == "y"):?>
 <div class="preloader-it">
 <div class="la-anim-1"></div>
 </div>
+<?php endif ?>
 <!--/Preloader-->
 <div class="wrapper pa-0">
 <header class="sp-header">

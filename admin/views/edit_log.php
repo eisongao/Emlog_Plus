@@ -112,6 +112,7 @@ var ele = $(this).parent('li');
               }
             }
    });
+ 
  $("#load_thumb").hide();
 });
 </script>

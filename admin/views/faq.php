@@ -33,7 +33,7 @@
 </div>
 <div class="mb-15">
 <i class="zmdi zmdi-link inline-block mr-10"></i>
-<span class="inline-block txt-dark">https://crazyus.ga</span>
+<span class="inline-block txt-dark">https://crazyus.us</span>
 </div>
 <div class="mb-15">
 <i class="zmdi zmdi-github inline-block mr-10"></i>
@@ -142,6 +142,7 @@
 <button type="submit" class="btn btn-success mr-10"><?php echo langs('faq_ok')?></button>
 <button type="reset"   class="btn btn-default"><?php echo langs('faq_res')?></button>
 </form>
+</div>
 </div>
 </div>
 </div>

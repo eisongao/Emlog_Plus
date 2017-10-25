@@ -72,30 +72,34 @@ $la = $key==$language?"selected=\"selected\"":'';
 <label class="control-label mb-10"><?php echo langs('webscan')?><?php echo langs('defense')?>(<?php echo $webscan_log ?>)<?php echo langs('defense_num')?><a href="configure.php?action=rest&token=<?php echo LoginAuth::genToken(); ?>"><?php echo langs('defense_rest')?></a></label>
 </div>
 <div class="checkbox checkbox-success ">
+<input value="y" name="filter_xss" type="checkbox"   id="filter_xss" <?php echo $conf_filter_xss; ?> />
+<label class="control-label mb-10"><?php echo langs('filter_xss')?></label>
+</div>
+<div class="checkbox checkbox-primary ">
  <input type="checkbox" value="y" name="detect_url" id="detect_url" <?php echo $conf_detect_url; ?> />
  <label class="control-label mb-10"><?php echo langs('detect_url')?></label>
 </div>
-<div class="checkbox checkbox-primary ">
+<div class="checkbox checkbox-success ">
 <input value="y" name="register_open" type="checkbox"   id="register_open" <?php echo $conf_register_open; ?> />
 <label class="control-label mb-10"><?php echo langs('register_open')?></label>
 </div>
-<div class="checkbox checkbox-success ">
+<div class="checkbox checkbox-primary ">
 <input value="y" name="login_code" type="checkbox"   id="login_code" <?php echo $conf_login_code; ?> />
 <label class="control-label mb-10"><?php echo langs('login_verification_code') ?></label>
 </div>
-<div class="checkbox checkbox-primary ">
+<div class="checkbox checkbox-success ">
 <input type="checkbox"  value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> />
 <label class="control-label mb-10"><?php echo langs('gzip_compression') ?></label>
 </div>
-<div class="checkbox checkbox-success">
+<div class="checkbox checkbox-primary">
 <input type="checkbox"  value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />
 <label class="control-label mb-10"><?php echo langs('offline_writing') ?></label>
 </div>
-<div class="checkbox checkbox-primary ">
+<div class="checkbox checkbox-success ">
 <input type="checkbox" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> />
 <label class="control-label mb-10"><?php echo langs('mobile_access_address') ?> <i class="fa fa-mobile"></i> <?php echo BLOG_URL.'m'; ?></label>
 </div>
-<div class="checkbox checkbox-success ">
+<div class="checkbox checkbox-primary ">
 <input type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> /><label class="control-label mb-10"><?php echo langs('auto_summary') ?></label>
 </div>
 </div>

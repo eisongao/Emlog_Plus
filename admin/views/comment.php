@@ -92,15 +92,15 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 <?php endif; ?>
  <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
 <div class="table-wrap ">
-<div class="table-responsive">
+<div <?php if(Option::get('responsive') == "y") echo 'class="table-responsive"'; ?>>
 <table class="table table-striped table-bordered mb-0">
 <thead>
 <tr>
-        <th>#</th>
-        <th><?php echo langs('content')?></th>
-        <th><?php echo langs('commentator')?></th>
-        <th><?php echo langs('belongs_to_post')?></th>
-      </tr>
+<th id="commet_">#</th>
+<th id="commet_m"><?php echo langs('content')?></th>
+<th id="commet_x"><?php echo langs('commentator')?></th>
+ <th id="commet_h"><?php echo langs('belongs_to_post')?></th>
+ </tr>
     </thead>
     <tbody>
     <?php
@@ -117,9 +117,9 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     ?>
      <tr>
      <td><input  type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a>   <?php echo $ishide; ?>
-        <br /><?php echo $value['date']; ?>
-        <span style="margin-left:8px;">    
+        <td   id="commet_m"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a>   <?php echo $ishide; ?>
+        <br /><?php echo $value['date']; ?><br/>
+        <span >    
             <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?php echo langs('delete')?></a>
         <?php if($value['hide'] == 'y'):?>
         <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><?php echo langs('approve')?></a>
@@ -129,11 +129,11 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?php echo langs('reply')?></a>
         <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><?php echo langs('edit')?></a>
         </td>
-        <td><?php echo $poster;?> <?php echo $mail;?>  <?php echo $ip;?> 
+        <td><?php echo $poster;?> <span id="commet_h"><?php echo $mail;?>  <?php echo $ip;?> </span>
             <?php if (ROLE == ROLE_ADMIN): ?>
             <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="<?php echo langs('delete_comments_from_ip')?>" class="care">(X)</a>
             <?php endif;?></td>
-        <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?php echo $seecommp ?>"><?php echo $value['title']; ?></a></td>
+        <td id="commet_h"><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?php echo $seecommp ?>"><?php echo $value['title']; ?></a></td>
      </tr>
     <?php endforeach;else:?>
       <tr><td class="tdcenter" colspan="4"><?php echo langs('no_comments_yet')?></td>

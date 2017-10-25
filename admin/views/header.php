@@ -15,6 +15,9 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Custom CSS -->
 <link href="./views/dist/css/style.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet" type="text/css">
+<?php if(Option::get('responsive') == "n"):?>
+<link href="./views/dist/css/mobile.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet" type="text/css">
+<?php endif ?>
 <script type="text/javascript" src="./views/js/jquery.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
  <script src="../include/lib/js/jquery/plugin-cookie.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
  <script src="<?php echo BLOG_URL ?>lang/<?php echo EMLOG_LANGUAGES ?>/lang_js.js"></script>
@@ -23,9 +26,11 @@
 <?php doAction('adm_head');?>
 </head>
 <body>
+<?php if(Option::get('preloader') == "y"):?>
 <div class="preloader-it">
 <div class="la-anim-1"></div>
 </div>
+<?php endif ?>
 <div id="lock_box">
 <div class="slideunlock-wrapper">
     <input type="hidden" value="" class="slideunlock-lockable"/>
@@ -35,7 +40,7 @@
     </div>
 </div>
 </div>
-<div class="wrapper theme-<?php echo Option::get('admin_style') ?>-active <?php echo Option::get('admin_sider') ?>  "><nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="wrapper theme-<?php echo Option::get('admin_style') ?>-active <?php echo Option::get('admin_sider') ?>  <?php if(Option::get('full_screen') == "n"):?>box-layout<?php endif ?> <?php if(Option::get('scrollable') == "n"):?>scrollable-nav<?php endif ?>"><nav class="navbar navbar-inverse navbar-fixed-top">
 <div class="mobile-only-brand pull-left">
 <div class="nav-header pull-left">
 <div class="logo-wrap">
@@ -68,30 +73,7 @@
 <li class="dropdown full-width-drp">
 <a><i class="zmdi zmdi-more-vert top-nav-icon"></i></a>
 </li>
-<li class="dropdown alert-drp">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><?php if($sta_cache['comnum_all']>"0"){?><span class="top-nav-icon-badge">5</span><?php } ?></a>
-<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
-<li>
-<div class="notification-box-head-wrap">
-<span class="notification-box-head pull-left inline-block"><?php echo langs('news_commet')?></span>
-<a class="txt-danger pull-right clear-notifications inline-block" href="javascript:void(0)"> <?php echo langs('news_close')?> </a>
-<div class="clearfix"></div>
-<hr class="light-grey-hr ma-0"/>
-</div>
-<li>
-<div class="streamline message-nicescroll-bar">
 <?php echo newcomm();?>
-</div>
-</li>
-<li>
-<div class="notification-box-bottom-wrap">
-<hr class="light-grey-hr ma-0"/>
-<a class="block text-center read-all" href="comment.php"> <?php echo langs('all_commets')?></a>
-<div class="clearfix"></div>
-</div>
-</li>
-</ul>
-</li>
 <?php }else{?>
 <li class="dropdown app-drp">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-apps top-nav-icon"></i></a>

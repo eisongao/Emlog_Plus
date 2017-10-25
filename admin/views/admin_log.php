@@ -185,17 +185,17 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">	
 <div class="table-wrap ">
-<div class="table-responsive">				
+<div <?php if(Option::get('responsive') == "y") echo 'class="table-responsive"'; ?>>		
 <table class="table table-striped table-bordered mb-0">
 <thead>
   <tr>
-<th>#</th>
-<th><?php echo langs('title')?></th>
-<th><?php echo langs('view')?></th><th><?php echo langs('category')?></th>
-<th><?php echo langs('user')?></th>
-<th><?php echo langs('time')?></th>
-<th><?php echo langs('comments')?></th>
-<th><?php echo langs('reads')?></th>
+<th id="log_">#</th>
+<th id="log_t"><?php echo langs('title')?></th>
+<th id="log_v"><?php echo langs('view')?></th><th id="log_c"><?php echo langs('category')?></th>
+<th id="log_u"><?php echo langs('user')?></th>
+<th id="log_d"><?php echo langs('time')?></th>
+<th id="log_com"><?php echo langs('comments')?></th>
+<th id="log_r"><?php echo langs('reads')?></th>
 </tr>
 </thead>
 <tbody>
@@ -206,8 +206,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     $author = $user_cache[$value['author']]['name'];
     $author_role = $user_cache[$value['author']]['role'];
     ?>												  <tr>
-<td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-<td><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+<td id="log_"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+<td id="log_t"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
       <?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?php echo langs('home_top')?>" /><?php endif; ?>
       <?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?php echo langs('category_top')?>" /><?php endif; ?>
       <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?php echo langs('attachment_num')?>：<?php echo $value['attnum']; ?>" /><?php endif; ?>
@@ -220,13 +220,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         }
         <?php endif;?>
       </span>
-      </td>										<td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?php echo langs('open_new_window')?>">
+      </td>										<td id="log_v"><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?php echo langs('open_new_window')?>">
       <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a></td>
-													<td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
-													<td><a href="./admin_log.php?uid=<?php echo $value['author'].$isdraft;?>"><?php echo $author; ?></a></td>
-													 <td class="small"><?php echo $value['date']; ?></td>
-													  <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-      <td class="tdcenter"><?php echo $value['views']; ?></a></td>
+													<td id="log_c"><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
+													<td id="log_u"><a href="./admin_log.php?uid=<?php echo $value['author'].$isdraft;?>"><?php echo $author; ?></a></td>
+													 <td id="log_d" class="small"><?php echo $value['date']; ?></td>
+													  <td id="log_com" class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+      <td id="log_r" class="tdcenter"><?php echo $value['views']; ?></a></td>
  </tr>
  <?php endforeach;else:?>
       <tr><td class="tdcenter" colspan="8"><?php echo langs('yet_no_posts')?></td></tr>

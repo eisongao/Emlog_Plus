@@ -92,18 +92,18 @@
 </div>
 <div class="clearfix"></div>
 <div class="table-wrap ">
-<div class="table-responsive">	
+<div <?php if(Option::get('responsive') == "y") echo 'class="table-responsive"'; ?>>
 <form action="link.php?action=operate_link" method="post" name="form_link" id="form_link">
 <table id="adm_link_list"  class="table table-striped table-bordered mb-0">
 <thead>
-  <tr><th>#</th>
-<th><b><?php echo langs('id') ?></b></th>
-<th><b><?php echo langs('link') ?></b></th>
-<th class="tdcenter"><b><?php echo langs('status') ?></b></th>
-<th class="tdcenter"><b><?php echo langs('category')?></b></th>
-<th class="tdcenter"><b><?php echo langs('views') ?></b></th>
-	<th><b><?php echo langs('description') ?></b></th>
-        <th><b><?php echo langs('operate')?></b></th>
+  <tr><th id="link_">#</th>
+<th id="link_i"><b><?php echo langs('id') ?></b></th>
+<th id="link_t"><b><?php echo langs('link') ?></b></th>
+<th id="link_s" class="tdcenter"><b><?php echo langs('status') ?></b></th>
+<th id="link_c" class="tdcenter"><b><?php echo langs('category')?></b></th>
+<th id="link_v" class="tdcenter"><b><?php echo langs('views') ?></b></th>
+<th id="link_d"><b><?php echo langs('description') ?></b></th>
+<th  id="link_o"><b><?php echo langs('operate')?></b></th>
      </tr>
  </thead>
  <tbody>
@@ -114,26 +114,26 @@
     doAction('adm_link_display');
     ?>  
       <tr>
-      <td><input type="checkbox" name="linkids[]" value="<?php echo $value['id']; ?>" class="ids" />
+      <td id="link_"><input type="checkbox" name="linkids[]" value="<?php echo $value['id']; ?>" class="ids" />
       </td>
-		<td><input class="form-control  em-small"   name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
-		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="<?php echo langs('edit_link')?>"><?php echo $value['sitename']; ?></a></td>
-		<td class="tdcenter">
+<td id="link_i"><input class="form-control  em-small"   name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
+<td id="link_t"><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="<?php echo langs('edit_link')?>"><?php echo $value['sitename']; ?></a></td>
+		<td id="link_s" class="tdcenter">
 		<?php if ($value['hide'] == 'n'): ?>
 		<a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="<?php echo langs('link_hide')?>"><?php echo langs('visible')?></a>
 		<?php else: ?>
 		<a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="<?php echo langs('link_show')?>" style="color:red;"><?php echo langs('hidden')?></a>
 		<?php endif;?>
 		</td>
-		<td class="tdcenter">
+		<td id="link_c" class="tdcenter">
 		<?php echo $linkSortName; ?>
 		</td>
-		<td class="tdcenter">
+		<td id="link_v" class="tdcenter">
 	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="<?php echo langs('view_link') ?>">
 	  	<img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 	  	</td>
-        <td><?php echo $value['description']; ?></td>
-        <td>
+        <td id="link_d"><?php echo $value['description']; ?></td>
+        <td id="link_o">
         <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="<?php echo langs('edit') ?>"><i class="zmdi zmdi-edit inline-block mr-5"></i></a>
         <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="care" title="<?php echo langs('delete') ?>"><i class="zmdi zmdi-delete inline-block"></i></a>
         </td>

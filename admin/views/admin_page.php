@@ -33,18 +33,18 @@
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
 <div class="table-wrap ">
-<div class="table-responsive">
+<div <?php if(Option::get('responsive') == "y") echo 'class="table-responsive"'; ?>>	
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
 <input type="hidden" name="pid" value="<?php echo $pid; ?>">
 <table class="table table-striped table-bordered mb-0">
   	<thead>
       <tr>
-       <th><b>#</b></th> 
-        <th><b><?php echo langs('title') ?></b></th>
-        <th><b><?php echo langs('views') ?></b></th>
-        <th class="tdcenter"><b><?php echo langs('template')?></b></th>
-        <th class="tdcenter"><b><?php echo langs('comments')?></b></th>
-        <th class="tdcenter"><b><?php echo langs('time')?></b></th>
+       <th id="page_"><b>#</b></th> 
+        <th id="page_t"><b><?php echo langs('title') ?></b></th>
+        <th id="page_v"><b><?php echo langs('views') ?></b></th>
+        <th id="page_tmp" class="tdcenter"><b><?php echo langs('template')?></b></th>
+        <th id="page_com" class="tdcenter"><b><?php echo langs('comments')?></b></th>
+        <th id="page_d" class="tdcenter"><b><?php echo langs('time')?></b></th>
       </tr>
     </thead>
     <tbody>
@@ -60,15 +60,15 @@
 	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.langs('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
-     	<td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-        <td>
+     	<td id="page_" width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+        <td id="page_t">
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
    		   <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?php echo langs('attachments')?>：<?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>
-        <td><?php echo $isHide; ?> </td>        
-        <td class="tdcenter"><?php if(empty($value['template'])){ ?><font color="#00A3A3"><?php echo langs('default')?></font><?php }else{ ?><?php echo $value['template']; ?><?php }?></td>
-        <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-        <td class="tdcenter"><?php echo $value['date']; ?></td>
+        <td id="page_v"><?php echo $isHide; ?> </td>        
+        <td id="page_tmp" class="tdcenter"><?php if(empty($value['template'])){ ?><font color="#00A3A3"><?php echo langs('default')?></font><?php }else{ ?><?php echo $value['template']; ?><?php }?></td>
+        <td id="page_com" class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+        <td id="page_d" class="tdcenter"><?php echo $value['date']; ?></td>
      </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="6"><?php echo langs('no_pages')?></td></tr>

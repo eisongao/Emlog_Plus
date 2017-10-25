@@ -95,7 +95,7 @@
 </div>
 <script>
 $(document).on('click','#btn_get',function () {
- var as_logid =document.getElementById('as_logid').value;	
+var as_logid =document.getElementById('as_logid').value;	
 var ele = $(this).parent('li');
         $.ajax({
       url: "attachment.php?action=thumb&logid="+as_logid,
