@@ -9,5 +9,6 @@ require_once 'init.php';
 define('TEMPLATE_PATH', TPLS_PATH.TEMPLATE_NAME.'/');//前台模板路径
 
 $emDispatcher = Dispatcher::getInstance();
+
 $emDispatcher->dispatch();
 View::output();

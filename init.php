@@ -28,13 +28,13 @@ if (Option::get('webscan') == 'y'){
 require_once EMLOG_ROOT.'/include/lib/360webscan.php';
 } 
 
+//XSS过滤类
+require_once EMLOG_ROOT.'/include/lib/xss_scan.php';
+
 
 doStripslashes();
-
 $CACHE = Cache::getInstance();
-
 $userData = array();
-
 define('ISLOGIN',LoginAuth::isLogin());
 
 //FLYER添加
@@ -57,8 +57,12 @@ define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
 //解决前台多域名ajax跨域
 define('DYNAMIC_BLOGURL', getBlogUrl());
 //前台模板URL
+session_start();
 if(isset($_GET['theme'])){
-    $theme = $_GET['theme']=='reset' ? Option::get('nonce_templet') : $_GET['theme'];
+$theme = $_GET['theme']=='reset' ? Option::get('nonce_templet') : $_GET['theme'];
+$_SESSION['theme']=$theme;
+}elseif(isset($_SESSION['theme'])){
+$theme=$_SESSION['theme'];
 }else{
     $theme='';
 }
