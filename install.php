@@ -41,7 +41,8 @@ function __autoload($class) {
 	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
 	} else {
-		emMsg($class . langs('_load_failed'));
+		emMsg($class . langs('_load_failed'));
+
 	}
 }
 
@@ -94,7 +95,8 @@ function htmlClean($content, $nl2br = true) {
 	$content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);
 	return $content;
 }
-/**
+
+/**
  * 获取站点地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
  */
 function getBlogUrl() {
@@ -532,7 +534,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY comnum (comnum),
   KEY hide (hide)
 )".$table_charset_sql."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,thumbs,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '".langs('emlog_welcome')."', '".time()."', '".langs('emlog_install_congratulation')."','','',1, 0, 0,'','n', 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,thumbs,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '".langs('emlog_welcome')."', '".time()."', '".langs('emlog_install_congratulation')."','','',1,0,0,0,'n','n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(10) unsigned NOT NULL auto_increment,
@@ -643,6 +645,11 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('webscan_log
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('webscan','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_sider','pimary-color-red');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_editor','1');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('full_screen','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('preloader','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('filter_xss','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('responsive','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('scrollable','y');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment,
@@ -737,6 +744,7 @@ CREATE TABLE {$db_prefix}user (
   email varchar(60) NOT NULL default '',
   description varchar(255) NOT NULL default '',
   website varchar(75) NOT NULL default '',
+  getpasstime int(10) NOT NULL default '0',
 PRIMARY KEY  (uid),
 KEY username (username)
 )".$table_charset_sql."
